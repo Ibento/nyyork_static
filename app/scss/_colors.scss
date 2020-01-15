@@ -1,0 +1,21 @@
+/* COLORS */
+
+$background_one: #1d2326;
+$content_one: #f4d7e1;
+
+$background_two: #f4d7e1;
+$content_two: #1d2326;
+
+$background_three: #e3e7ed;
+$content_three: #1d2326;
+
+
+.color-one {
+  background-color: $background_one;
+}
+.color-two {
+  background-color: $background_two;
+}
+.color-three {
+  background-color: $background_three;
+}

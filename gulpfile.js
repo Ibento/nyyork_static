@@ -12,17 +12,13 @@ const terser = require('gulp-terser');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-const replace = require('gulp-replace');
-const imagemin = require('gulp-imagemin');
+const concat = require('gulp-concat');
  
 
 // File paths
 const files = { 
     scssPath: 'app/scss/**/*.scss',
     jsPath: 'app/js/**/*.js',
-    imagePath: 'app/images/**/*',
-    fontPath: 'app/fonts/**/*',
-    musicPath: 'app/music/*',
     htmlPath: '*.html'
 }
 
@@ -60,35 +56,20 @@ function jsTask(){
         files.jsPath
         //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
         ])
-  //      .pipe(concat('all.js'))
-  //      .pipe(terser())
+        .pipe(concat('app.js'))
+        .pipe(terser())
         .pipe(dest('dist/js')
     );
 }
 
-function imageTask() {
-    return src(files.imagePath)
-    .pipe(imagemin())
-    .pipe(dest('dist/images'))
-}
 
-
-function fontTask() {
-    return src(files.fontPath)
-            .pipe(dest('dist/fonts'));
-}
-
-function musicTask() {
-    return src(files.musicPath)
-            .pipe(dest('dist/music'));
-}
 
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
 function watchTask(){
-    watch([files.scssPath, files.jsPath, files.imagePath, files.musicPath, files.fontPath, files.htmlPath], 
+    watch([files.scssPath, files.jsPath, files.htmlPath], 
         series(
-            series(clean, scssTask, jsTask, imageTask, fontTask, musicTask, reload)            
+            series(clean, scssTask, jsTask, reload)            
         )
     );    
 }
@@ -99,7 +80,7 @@ function watchTask(){
 // then runs cacheBust, then watch task
 exports.default = series(
     clean,
-    parallel(scssTask, jsTask, imageTask, fontTask, musicTask), 
+    parallel(scssTask, jsTask), 
     serve,
     watchTask
 );

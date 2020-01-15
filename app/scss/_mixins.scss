@@ -1,0 +1,22 @@
+
+@mixin mainContent($color) {
+    div.content {
+        width: 50%;
+        margin: 0 auto;
+        opacity: 0;
+        color: $color;
+        a {
+            color: #fff;
+        }
+        p {
+            font-size: 1.2rem;
+
+        }
+        h1 {
+            padding: 20px 0;
+            font-size: 3em;
+            letter-spacing: -0.05em;
+            line-height: 1.1;
+        }
+    }       
+}
