@@ -4,7 +4,7 @@ $(document).ready(function() {
         // selectors
         var $window = $(window),
             $body = $('body'),
-            $panel = $('section.panel'),
+            $panel = $('.panel'),
             $fadeIn = $('.fadeIn');
         
         // Change 33% earlier than scroll position so colour is there when you arrive.
@@ -15,6 +15,7 @@ $(document).ready(function() {
             
             var $this = $(this);
             
+            // If the panel is visible
             if ($this.position().top <= scroll && $this.position().top + $this.height() > scroll) {
                     
                 // Remove all classes on body with color-
@@ -22,12 +23,12 @@ $(document).ready(function() {
                 return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
                 });
                 
-                // Add class of currently active div
+                // Add color class of currently active body
                 $body.addClass('color-' + $(this).data('color'));
             }
         });    
     
-        /* Check the location of each fadeIn */
+        /* Check the location of each fadeIn content blocks */
         $fadeIn.each( function() {
     
             var bottom_of_object = $(this).position().top + $(this).outerHeight();

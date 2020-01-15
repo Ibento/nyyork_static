@@ -1,13 +1,13 @@
 # semester_project2
 
-> Semester Project 2 - Øyvind Dahl
+> Studio Netting - Øyvind Brungot Dahl
 
 ## Build Setup
 
 ## Clone GitHub repository
 ```
-git clone https://github.com/Ibento/portfolio_project2
-cd portfolio_project2
+git clone https://github.com/Ibento/frontend_boilerplate
+cd frontend_boilerplate
 ```
 ## Project setup
 ```
