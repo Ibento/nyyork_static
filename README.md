@@ -1,13 +1,13 @@
-# semester_project2
+# nyyork_vintage_static
 
-> Studio Netting - Øyvind Brungot Dahl
+> Ny York Vintage - HTML / CSS - Øyvind Brungot Dahl
 
 ## Build Setup
 
 ## Clone GitHub repository
 ```
-git clone https://github.com/Ibento/frontend_boilerplate
-cd frontend_boilerplate
+git clone https://github.com/Ibento/nyyork-static
+cd nyyork-static
 ```
 ## Project setup
 ```

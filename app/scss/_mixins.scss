@@ -1,22 +1,406 @@
 
-@mixin mainContent($color) {
-    div.content {
-        width: 50%;
-        margin: 0 auto;
-        opacity: 0;
-        color: $color;
-        a {
-            color: #fff;
+@function stroke($stroke, $color) {
+    $shadow: ();
+    $from: $stroke*-1;
+    @for $i from $from through $stroke {
+        @for $j from $from through $stroke {
+        $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
         }
-        p {
-            font-size: 1.2rem;
+    }
+    @return $shadow;
+}
+
+@mixin stroke($stroke, $color) {
+    text-shadow: stroke($stroke, $color);
+}
+
+// direction = positive / negative
+@mixin dropShadow($direction, $blur) {
+    -webkit-box-shadow: $direction 5px $blur 0px rgba(0,0,0,1);
+    -moz-box-shadow: $direction 5px  $blur 0px rgba(0,0,0,1);
+    box-shadow: $direction 5px $blur 0px  rgba(0,0,0,1);
+}
+
+@mixin whoWeAre($color) {
+    div.who_we_are_background {
+        @media screen and (min-width: 416px){
+            background-image: url('/dist/images/who_we_are_background.png');
+            @if $color == $pink {
+                background-image: url('/dist/images/who_we_are_background_pink.png');
+
+            }
+        }
+
+        background-repeat:no-repeat;
+        background-size:100%;      
+        position: relative;
+        width: 70%;
+        display: flex;
+        flex-direction: row;
+
+        @media screen and (max-width: 1024px){
+            width: 98%;
+            
+        }
+
+
+        @media screen and (max-width: 415px){
+            flex-direction: column-reverse;
+            background-color: $gray;
+            border: 3px solid $yellow;
+            text-align: center;
+         
+        }
+        
+        div.content {
+            padding: 25px 30px;
+            h2 {
+                font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+                font-weight: 800;
+                color: $yellow;
+                font-size: 2.1rem;
+                margin-bottom: 10px;
+
+            }
+            div {
+                width: 60%;
+                color: $beige;
+                font-size: 0.9rem;
+                font-weight: bold;
+                width: 90%;
+                @media screen and (max-width: 415px){
+                    width: 100%;
+                }
+            }
+        }
+
+        div.image {
+            width: 40%;
+            margin: 12px;
+            img {
+                -webkit-box-shadow: -10px 2px 14px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: -10px 2px 14px 0px rgba(0,0,0,0.75);
+                box-shadow: -10px 2px 14px 0px rgba(0,0,0,0.75);
+            
+                max-width: 280px;
+            
+            }
+
+            @media screen and (max-width: 415px){
+                width: 99%;
+            }
+        }
+
+        &:after {
+                padding-top: 50%;
+                display: block;
+                content: '';
+
+                @media screen and (max-width: 415px){
+                    padding-top: 3%;
+                }
+        }
+
+
+    } 
+}
+
+@mixin openingHours($width, $fontSize, $bgcolor) {
+    div.opening_hours {
+        background-image: url('/dist/images/opening_hours.svg');
+
+        background-repeat:no-repeat;
+        background-size:100%;      
+        position: relative;
+        padding: 40px 55px;
+  
+        color: $black;
+        font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        font-size: $fontSize;
+        width: $width;
+
+        @if $bgcolor == $pink {
+            background-image: url('/dist/images/opening_hours_pink.svg');
+            color: $beige;
 
         }
-        h1 {
-            padding: 20px 0;
-            font-size: 3em;
-            letter-spacing: -0.05em;
-            line-height: 1.1;
+
+        @if $bgcolor == $gray {
+            background-image: url('/dist/images/opening_hours_gray.svg');
+            color: $beige;
+
         }
-    }       
+
+
+        @media screen and (max-width: 1200px){
+            width: 50%;
+            font-size: 1.3rem;
+            padding: 90px;
+        }
+
+        @media screen and (max-width: 768px){
+            width: 60%;
+            font-size: 1.1rem;
+            padding: 90px;
+        }
+
+        @media screen and (max-width: 415px){
+            width: 90%;
+            font-size: 0.9rem;
+            padding: 50px 70px;
+            margin: 100px 0;
+        }
+
+        @media screen and (max-width: 320px){
+            font-size: 0.7rem;
+            margin: 10px 0;
+        }   
+
+        span {
+            font-weight: 300;
+            font-style: italic;
+        }     
+        &:after {
+            padding-top: 5%;
+            display: block;
+            content: '';
+            @media screen and (max-width: 1200px){
+                padding-top: 50%;
+            }
+            
+        }
+
+    }
+}
+
+@mixin featureAlternate($bgcolor) {
+    div.feature.dark {
+
+        background-color: $bgcolor;
+        border: 3px solid $yellow;
+        margin-right: 0px;
+
+        @media screen and (max-width: 1200px){
+            margin: 50px auto;
+            margin-left: 260px;
+        }
+
+        @media screen and (max-width: 768px) {
+            height: 400px;
+        }
+
+
+        @media screen and (max-width: 415px){
+            width: 100%;
+            padding-bottom: 100px;
+            margin:0;
+            display: flex;
+            flex-direction: column;
+            height: 190%;
+
+        }
+        div.content {
+            padding: 25px 30px;
+            width: 65%;
+            position: relative;
+
+            @media screen and (max-width: 415px){
+                width: 100%;
+                text-align: center;
+
+            }
+        
+            h2 {
+                font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+                font-weight: 800;
+                color: $yellow;
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+                span {
+                    color: $bgcolor;
+                    @include stroke(1, $yellow); 
+                    display: inline-block;
+                    margin-right: 5px;
+                    letter-spacing: 1.1px;
+                }
+
+            }
+            div {
+                color: $beige;
+                font-size: 0.9rem;
+                font-weight: bold;
+                width: 90%;
+            }
+
+            button {
+                
+                position: absolute;
+                right: 20px;
+                bottom: 20px;
+                left: auto;
+                background-color: $yellow;
+                border: 0;
+                color: $black;
+                padding: 8px 70px;
+                font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+                font-weight: 700;
+                font-size: 0.9rem;
+
+                @media screen and (max-width: 415px){
+                    left: 0;
+                    right: 0;
+                    bottom:-10%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 300px;
+        
+                }
+
+                transition: transform .4s;
+                &:hover {
+                    transform: scale(1.05); 
+                }
+            }
+        }
+
+        div.image {
+            width: 35%;
+            margin: 10px auto 10px -180px;
+            @media screen and (max-width: 768px) {
+                margin-left: -250px;
+            }
+
+            @media screen and (max-width: 415px){
+                width: 99%;
+                margin: 0;
+            
+            }
+            img {
+                -webkit-box-shadow: 10px 2px 14px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 10px 2px 14px 0px rgba(0,0,0,0.75);
+                box-shadow: 10px 2px 14px 0px rgba(0,0,0,0.75);
+            
+                max-height: 310px;
+                @media screen and (max-width: 415px){
+                    max-width: 100%;
+                }
+                
+            }
+        }
+
+    }
+}
+
+
+
+@mixin feature($bgcolor, $color) {
+
+    div.feature {
+
+
+        position: relative;
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        background-color: $bgcolor;
+        border: 3px solid $color;
+        margin-right: 140px;
+
+
+   
+        @media screen and (max-width: 1200px){
+            margin: 50px auto;
+            margin-right: 260px;
+        }
+        @media screen and (min-width: 416px) and (max-width: 768px) {
+            height: 400px;
+        }
+
+        @media screen and (max-width: 415px) {
+            width: 100%;
+            padding-bottom: 100px;
+            flex-direction: column-reverse;
+
+        }
+        div.content {
+            padding: 25px 30px;
+            width: 65%;
+            @media screen and (max-width: 415px){
+                width: 100%;
+                text-align: center;
+    
+            }
+            h2 {
+                font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+                font-weight: 800;
+                color: $color;
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+                span {
+                    color: $bgcolor;
+                    @include stroke(1, $color); 
+                    display: inline-block;
+                    margin-right: 5px;
+                    letter-spacing: 1.1px;
+                }
+
+            }
+            div {
+                color: $beige;
+                font-size: 0.9rem;
+                font-weight: bold;
+                width: 90%;
+           
+            }
+
+            button {
+                position: absolute;
+                left: 20px;
+                bottom: 20px;
+                @media screen and (max-width: 415px){
+                    left: 0;
+                    right: 0;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 300px;
+        
+                }
+                background-color: $color;
+                border: 0;
+                color: $black;
+                padding: 8px 70px;
+                font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+                font-weight: 700;
+                font-size: 0.9rem;
+            
+                transition: transform .4s;
+                &:hover {
+                    transform: scale(1.05); 
+                }
+            }
+        }
+
+        div.image {
+            width: 35%;
+            margin: 12px auto;
+            @media screen and (max-width: 768px) {
+                margin: auto;
+            }
+            @media screen and (max-width: 415px){
+                width: 99%;
+            }
+            img {
+                -webkit-box-shadow: -10px 2px 14px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: -10px 2px 14px 0px rgba(0,0,0,0.75);
+                box-shadow: -10px 2px 14px 0px rgba(0,0,0,0.75);
+            
+                max-height: 310px;
+                @media screen and (max-width: 415px){
+                    max-width: 100%;
+                }
+            }
+        }
+  
+    }
 }

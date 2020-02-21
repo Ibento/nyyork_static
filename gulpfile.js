@@ -13,13 +13,15 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const concat = require('gulp-concat');
- 
+const imagemin = require('gulp-imagemin');
+
 
 // File paths
 const files = { 
     scssPath: 'app/scss/**/*.scss',
     jsPath: 'app/js/**/*.js',
-    htmlPath: '*.html'
+    htmlPath: '*.html',
+    imgPath: 'app/assets/**/**',
 }
 
 const clean = () => del(['dist']);
@@ -62,14 +64,36 @@ function jsTask(){
     );
 }
 
+//  Image task: minifies and copies images to dist
+function imgTask(){
+    return src([
+        files.imgPath
+        //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
+        ])
+        .pipe(src(files.imgPath))
+        .pipe(imagemin([
+            imagemin.gifsicle({interlaced: true}),
+            imagemin.jpegtran({quality: 75, progressive: true}),
+            imagemin.optipng({optimizationLevel: 5}),
+            imagemin.svgo({
+                plugins: [
+                    {removeViewBox: true},
+                    {cleanupIDs: false}
+                ]
+            })
+        ])
+        .pipe(dest('dist/images'))
+    )
+}
+
 
 
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
 function watchTask(){
-    watch([files.scssPath, files.jsPath, files.htmlPath], 
+    watch([files.scssPath, files.jsPath, files.imgPath, files.htmlPath], 
         series(
-            series(clean, scssTask, jsTask, reload)            
+            series(clean, scssTask, jsTask, imgTask, reload)            
         )
     );    
 }
@@ -80,7 +104,7 @@ function watchTask(){
 // then runs cacheBust, then watch task
 exports.default = series(
     clean,
-    parallel(scssTask, jsTask), 
+    parallel(scssTask, jsTask, imgTask), 
     serve,
     watchTask
 );
