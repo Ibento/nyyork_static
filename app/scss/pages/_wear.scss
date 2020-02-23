@@ -1,0 +1,144 @@
+
+
+/* WEAR */
+
+section.page_element.weartop {
+    background-image: url('/dist/images/wear_top_background2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    div.content {
+        
+        padding: 200px;
+        @media screen and (max-width: 415px) {
+            padding: 200px 0 20px 0;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+}
+
+
+
+#wear02 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 35px;
+
+
+    @media screen and (max-width: 1200px){
+        flex-direction: column;
+        margin: 0 auto;
+        width: 90%;   
+    }
+ 
+    @include openingHours(23%, 0.8rem, $pink);
+
+    @include featureAlternate($pink);
+
+}
+
+#wear03 {
+
+    @include whereIs();
+
+}
+
+
+#wear04 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media screen and (max-width: 1200px){
+        flex-direction: column;
+        margin: 0;
+        width: 100%;   
+    }
+
+
+    div.ad {
+        width: 25%;
+        transition: transform .4s;
+
+        &:hover {
+            transform: scale(1.05); 
+        }
+        cursor: pointer;
+        img {
+            @include dropShadow(5px, 5px, 5px);
+            width: 100%;
+        }
+
+        @media screen and (max-width: 1200px){
+            width: 70%;
+            margin: 50px auto;
+        }
+    }
+    @include feature($gray, $beige);
+    
+}
+
+
+section#wear05 {
+    background-color: $pink;
+    padding-bottom: 50px;
+    width: 100%;
+    margin: 100px 0;
+    padding: 0px 0 150px 0;
+
+    div.heading {
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+
+        span {
+            font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 2rem;
+    
+            a {
+                color: $beige;
+            }
+        }
+    }
+    @include instagramWrapper();
+}
+
+
+section#wear06 {
+    background-color: $gray;
+    margin-bottom: 100px;
+    div.heading {
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
+       
+
+        span {
+            font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            color: $beige;
+ 
+        }
+
+        div.subtitle {
+            color: $beige;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        img {
+            margin-top: -30px;
+            margin-right: 10px;
+            max-width: 40px;
+            color: $beige;
+        }
+    }
+
+    @include shopShortcuts();
+}
