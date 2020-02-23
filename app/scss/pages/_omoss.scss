@@ -2,7 +2,8 @@
 /* OM OSS */
 
 
-section#omoss01 {
+section#omoss01,
+section#english01, {
     background-image: url('/dist/images/omoss_top_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -19,14 +20,14 @@ section#omoss01 {
             width: 100%;
         }
     }
-
-    &.english {
-        background-image: url('/dist/images/english_top_background.jpg');
-
-    }
 }
 
-#omoss02 {
+section#english01 {
+    background-image: url('/dist/images/english_top_background.jpg');
+}
+
+#omoss02,
+#english02 {
     @include whoWeAre($pink);
     div.who_we_are_background {
         width: 100%;
@@ -49,7 +50,8 @@ section#omoss01 {
 }
 
 
-#omoss03 {
+#omoss03,
+#english03 {
     display: flex;
     flex-direction: row;
     @media screen and (max-width: 415px) {
@@ -102,7 +104,8 @@ section#omoss01 {
     }
 }
 
-#omoss04 {
+#omoss04,
+#english04 {
     @include whereIs();
 }
 
@@ -194,6 +197,32 @@ section#omoss01 {
     }
 }
 
+section#english05 {
+    background-color: $pink;
+    padding-bottom: 50px;
+    width: 100%;
+    margin: 100px 0;
+    padding: 0px 0 150px 0;
+
+    div.heading {
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+
+        span {
+            font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 2rem;
+    
+            a {
+                color: $beige;
+            }
+        }
+    }
+    @include instagramWrapper();
+}
+
 #omoss06 {
     font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
 
@@ -261,6 +290,37 @@ section#omoss01 {
             }
         }
     }
+}
 
+section#english06 {
+    background-color: $gray;
+    margin-bottom: 100px;
+    div.heading {
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
+       
 
+        span {
+            font-family: 'Poppins', 'Open Sans', Arial, Helvetica, sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            color: $beige;
+ 
+        }
+
+        div.subtitle {
+            color: $beige;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        img {
+            margin-top: -30px;
+            margin-right: 10px;
+            max-width: 40px;
+            color: $beige;
+        }
+    }
+
+   @include shopShortcuts();
 }
